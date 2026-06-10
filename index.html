@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Business Hub">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Business Hub — Muhiimsom</title>
+<style id="tw-standalone">
+/* === Tailwind replacement — production-safe, no CDN === */
+*,::before,::after{box-sizing:border-box}
+html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{margin:0}
+hr{border-top-width:1px}
+a{color:inherit;text-decoration:inherit}
+button,input,select{font-family:inherit;font-size:100%;line-height:inherit;margin:0}
+button{cursor:pointer;background-image:none}
+
+/* display */
+.hidden{display:none!important}
+.block{display:block}
+.flex{display:flex}
+.grid{display:grid}
+.inline{display:inline}
+.inline-block{display:inline-block}
+.inline-flex{display:inline-flex}
+
+/* flex */
+.flex-1{flex:1 1 0%}
+.flex-col{flex-direction:column}
+.flex-shrink-0{flex-shrink:0}
+.flex-wrap{flex-wrap:wrap}
+.items-center{align-items:center}
+.items-start{align-items:flex-start}
+.justify-between{justify-content:space-between}
+.justify-center{justify-content:center}
+.justify-end{justify-content:flex-end}
+.self-start{align-self:flex-start}
+
+/* grid */
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.col-span-2{grid-column:span 2/span 2}
+@media(min-width:640px){.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+/* gap */
+.gap-1{gap:.25rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}
+
+/* spacing */
+.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}
+.px-2{padding-left:.5rem;padding-right:.5rem}
+.px-3{padding-left:.75rem;padding-right:.75rem}
+.px-4{padding-left:1rem;padding-right:1rem}
+.px-5{padding-left:1.25rem;padding-right:1.25rem}
+.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}
+.py-1{padding-top:.25rem;padding-bottom:.25rem}
+.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}
+.py-2{padding-top:.5rem;padding-bottom:.5rem}
+.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}
+.py-3{padding-top:.75rem;padding-bottom:.75rem}
+.py-10{padding-top:2.5rem;padding-bottom:2.5rem}
+.pr-3{padding-right:.75rem}
+.pt-3{padding-top:.75rem}
+.pb-2{padding-bottom:.5rem}
+.mb-0{margin-bottom:0}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}
+.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}
+.mt-0\.5{margin-top:.125rem}
+.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-auto{margin-top:auto}
+.mx-4{margin-left:1rem;margin-right:1rem}
+.space-y-2>*+*{margin-top:.5rem}
+.space-y-3>*+*{margin-top:.75rem}
+.space-y-4>*+*{margin-top:1rem}
+.space-y-6>*+*{margin-top:1.5rem}
+.divide-y>*+*{border-top-width:1px}
+.divide-gray-700\/30>*+*{border-color:rgba(55,65,81,.3)}
+
+/* sizing */
+.w-4{width:1rem}.w-7{width:1.75rem}.w-9{width:2.25rem}
+.w-56{width:14rem}.w-full{width:100%}
+.h-7{height:1.75rem}.h-9{height:2.25rem}
+.max-w-md{max-width:28rem}.max-w-xs{max-width:20rem}
+.max-h-screen{max-height:100vh}
+.min-w-48{min-width:12rem}
+.min-h-screen{min-height:100vh}
+
+/* position */
+.relative{position:relative}.absolute{position:absolute}.sticky{position:sticky}
+.top-0{top:0}.top-2\.5{top:.625rem}.left-3{left:.75rem}
+.inset-0{inset:0}
+.z-50{z-index:50}.z-\[1000\]{z-index:1000}
+
+/* overflow */
+.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.overflow-x-auto{overflow-x:auto}
+
+/* typography */
+.font-sans{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.font-bold{font-weight:700}.font-semibold{font-weight:600}.font-medium{font-weight:500}
+.text-xs{font-size:.75rem;line-height:1rem}
+.text-sm{font-size:.875rem;line-height:1.25rem}
+.text-base{font-size:1rem;line-height:1.5rem}
+.text-lg{font-size:1.125rem;line-height:1.75rem}
+.text-xl{font-size:1.25rem;line-height:1.75rem}
+.text-2xl{font-size:1.5rem;line-height:2rem}
+.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}
+.uppercase{text-transform:uppercase}
+.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.leading-none{line-height:1}
+
+/* colors — text */
+.text-white{color:#fff}
+.text-gray-100{color:#f3f4f6}.text-gray-300{color:#d1d5db}.text-gray-400{color:#9ca3af}
+.text-gray-500{color:#6b7280}.text-gray-600{color:#4b5563}.text-gray-900{color:#111827}
+.text-yellow-300{color:#fde047}.text-yellow-400{color:#facc15}.text-yellow-500{color:#eab308}
+.text-green-400{color:#4ade80}
+.text-blue-400{color:#60a5fa}
+.text-purple-300{color:#d8b4fe}.text-purple-400{color:#c084fc}
+.text-red-400{color:#f87171}
+.text-orange-400{color:#fb923c}
+.text-amber-400{color:#fbbf24}
+
+/* colors — background */
+.bg-gray-700{background-color:#374151}.bg-gray-700\/30{background-color:rgba(55,65,81,.3)}
+.bg-gray-700\/50{background-color:rgba(55,65,81,.5)}
+.bg-gray-800{background-color:#1f2937}.bg-gray-900{background-color:#111827}
+.bg-yellow-600{background-color:#ca8a04}
+.bg-green-600{background-color:#16a34a}
+.bg-blue-600{background-color:#2563eb}.bg-blue-700{background-color:#1d4ed8}
+.bg-purple-600{background-color:#9333ea}
+.bg-red-600{background-color:#dc2626}
+
+/* opacity backgrounds */
+.bg-green-500\/20{background-color:rgba(34,197,94,.2)}
+.bg-blue-500\/20{background-color:rgba(59,130,246,.2)}
+.bg-purple-500\/20{background-color:rgba(168,85,247,.2)}
+.bg-red-500\/20{background-color:rgba(239,68,68,.2)}
+.bg-yellow-500\/20{background-color:rgba(234,179,8,.2)}
+
+/* hover */
+.hover\:bg-gray-600:hover{background-color:#4b5563}
+.hover\:bg-gray-700:hover{background-color:#374151}
+.hover\:bg-gray-700\/30:hover{background-color:rgba(55,65,81,.3)}
+.hover\:bg-blue-500\/40:hover{background-color:rgba(59,130,246,.4)}
+.hover\:bg-blue-700:hover{background-color:#1d4ed8}
+.hover\:bg-green-500:hover{background-color:#22c55e}
+.hover\:bg-green-500\/40:hover{background-color:rgba(34,197,94,.4)}
+.hover\:bg-purple-500:hover{background-color:#a855f7}
+.hover\:bg-red-500:hover{background-color:#ef4444}
+.hover\:bg-red-500\/40:hover{background-color:rgba(239,68,68,.4)}
+.hover\:bg-yellow-500:hover{background-color:#eab308}
+.hover\:bg-yellow-500\/40:hover{background-color:rgba(234,179,8,.4)}
+.hover\:text-white:hover{color:#fff}
+
+/* borders */
+.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}
+.border-t{border-top-width:1px}
+.border-gray-600{border-color:#4b5563}.border-gray-700{border-color:#374151}
+.border-gray-700\/50{border-color:rgba(55,65,81,.5)}
+.border-green-500\/30{border-color:rgba(34,197,94,.3)}.border-green-500\/40{border-color:rgba(34,197,94,.4)}
+.border-blue-500\/40{border-color:rgba(59,130,246,.4)}
+.border-purple-500\/30{border-color:rgba(168,85,247,.3)}.border-purple-500\/40{border-color:rgba(168,85,247,.4)}
+.border-red-500\/30{border-color:rgba(239,68,68,.3)}.border-red-500\/40{border-color:rgba(239,68,68,.4)}
+.border-yellow-500\/30{border-color:rgba(234,179,8,.3)}.border-yellow-500\/40{border-color:rgba(234,179,8,.4)}
+.border-orange-500\/40{border-color:rgba(249,115,22,.4)}
+.border-amber-500\/40{border-color:rgba(245,158,11,.4)}
+.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}
+.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}
+
+/* effects */
+.transition{transition-property:color,background-color,border-color,opacity,transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.opacity-60{opacity:.6}
+@media(min-width:640px){.sm\:inline{display:inline!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.tab-section{display:none}.tab-section.active{display:block}
+.nv-btn{width:100%;display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:500;transition:all .15s;color:#9CA3AF;background:transparent;border:none;cursor:pointer;text-align:left}
+.nv-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.nv-btn.on{background:rgba(217,119,6,.25);color:#FCD34D}
+.chip{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid #374151;background:#1F2937;color:#9CA3AF;transition:all .12s}
+.chip.on{background:#D97706;color:#fff;border-color:#D97706}
+.prog-bar{height:5px;background:#374151;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+mark{background:#78350F;color:#FDE68A;border-radius:2px}
+input,select{background:#1F2937;border:1px solid #374151;color:#F3F4F6;border-radius:6px;padding:7px 10px;font-size:12px;width:100%;outline:none;transition:border-color .12s}
+input:focus,select:focus{border-color:#D97706}
+.toast{position:fixed;bottom:20px;right:20px;background:#1F2937;border:1px solid #374151;color:#F3F4F6;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:500;z-index:9999;transform:translateY(50px);opacity:0;transition:all .22s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{border-left:3px solid #059669}
+.toast.err{border-left:3px solid #DC2626}
+</style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans text-sm">
+
+<!-- HEADER -->
+<header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 px-5 py-3 flex justify-between items-center">
+  <div class="flex items-center gap-3">
+    <div class="bg-yellow-600 text-gray-900 font-bold text-sm w-9 h-9 rounded-lg flex items-center justify-center">MH</div>
+    <div>
+      <div class="font-bold text-base tracking-wide">Business Hub</div>
+      <div class="text-xs text-gray-400">Muhiimsom + Online Betting</div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full border border-green-500/30 font-medium hidden sm:inline">
+      <i class="fas fa-circle text-green-400" style="font-size:6px;vertical-align:2px"></i> All Systems Active
+    </span>
+    <button onclick="exportCSV()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-lg flex items-center gap-2 transition">
+      <i class="fas fa-file-csv"></i><span class="hidden sm:inline">Export CSV</span>
+    </button>
+  </div>
+</header>
+
+<div class="flex" style="min-height:calc(100vh - 53px)">
+  <!-- SIDEBAR -->
+  <aside class="w-56 bg-gray-800 border-r border-gray-700 p-3 flex flex-col gap-4 flex-shrink-0">
+    <div>
+      <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mb-2">Construction</p>
+      <button class="nv-btn on" id="nv-overview"    onclick="goTo('overview')">   <i class="fas fa-chart-pie text-yellow-400 w-4"></i>Overview</button>
+      <button class="nv-btn"    id="nv-production"  onclick="goTo('production')"> <i class="fas fa-industry text-yellow-500 w-4"></i>Waxsoosaarka</button>
+      <button class="nv-btn"    id="nv-customers"   onclick="goTo('customers')">  <i class="fas fa-users text-green-400 w-4"></i>Macaamiisha</button>
+    </div>
+    <div>
+      <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mb-2">Online Betting</p>
+      <button class="nv-btn"    id="nv-betting"     onclick="goTo('betting')">    <i class="fas fa-gamepad text-purple-400 w-4"></i>Transactions</button>
+    </div>
+    <div>
+      <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mb-2">Finance</p>
+      <button class="nv-btn"    id="nv-expenses"    onclick="goTo('expenses')">   <i class="fas fa-wallet text-red-400 w-4"></i>Qarashka Guud</button>
+    </div>
+    <div class="mt-auto pt-3 border-t border-gray-700">
+      <p class="text-xs text-gray-500" id="sb-date"></p>
+      <p class="text-xs text-gray-600 mt-1">Muhiimsom Construction</p>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto p-5">
+    <div id="content"></div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="bgClick(event)">
+  <div class="bg-gray-800 border border-gray-700 rounded-xl w-full max-w-md mx-4 max-h-screen overflow-y-auto">
+    <div class="flex items-center justify-between p-4 border-b border-gray-700">
+      <div class="font-semibold text-base" id="m-title">Add</div>
+      <button onclick="closeMod()" class="text-gray-400 hover:text-white transition text-lg">&times;</button>
+    </div>
+    <div class="p-4" id="m-body"></div>
+    <div class="flex gap-2 justify-end p-4 border-t border-gray-700">
+      <button onclick="closeMod()" class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-sm transition">Cancel</button>
+      <button onclick="saveMod()" class="px-4 py-2 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-900 font-semibold text-sm transition">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATABASE ──────────────────────────────────────────────
+var DB={
+  production:[
+    {id:1,date:"19/04/2026",stone:"No.8",metre:1247,trucks:23,labor:"",porter:"",truck:""},
+    {id:2,date:"14/05/2026",stone:"No.6",metre:127.5,trucks:0,labor:"",porter:"",truck:""}
+  ],
+  customers:[
+    {id:1,name:"Xaawo Ceynte Kulmiye",    phone:"618658010",metre:78.75,ppm:16,total:1260,  paid:1000,resto:260},
+    {id:2,name:"Abdullhi Shiiq Muxudiin", phone:"615825902",metre:150,  ppm:16,total:2400,  paid:1000,resto:1400},
+    {id:3,name:"Dahabo Sharaxow Axmed",   phone:"615579726",metre:75,   ppm:16,total:1200,  paid:400, resto:800},
+    {id:4,name:"Yuusuf Abdulle Qandhac",  phone:"615266261",metre:150,  ppm:16,total:2400,  paid:1200,resto:1200},
+    {id:5,name:"Raxmo Abdi Cusmaaan",     phone:"612753830",metre:155,  ppm:16,total:2480,  paid:700, resto:1780}
+  ],
+  betting:[
+    {id:1,date:"05/12/2025",cashier:"1xbet0303",    prev:17167.07,newb:4818.73, diff:-12348.34,notes:"12348.34"},
+    {id:2,date:"05/12/2025",cashier:"1xbet 55",     prev:863.59,  newb:563.59,  diff:-300,    notes:"300"},
+    {id:3,date:"27/05/2026",cashier:"winwin1 6526",  prev:1313.59, newb:1000.59, diff:-313,    notes:""},
+    {id:4,date:"05/12/2025",cashier:"golden pari",  prev:102.21,  newb:81.75,   diff:-20.46,  notes:"golden pari =$-20.46 ka maqan xuurshe"}
+  ],
+  expenses:[
+    {id:1,staff:"Yaasin Nuur Gulane",salary:250,family:400,rent:700,total:1350},
+    {id:2,staff:"Xuurshe",           salary:250,family:300,rent:500,total:1050},
+    {id:3,staff:"Cabdi casir",       salary:230,family:300,rent:400,total:930}
+  ],
+  nid:{production:3,customers:6,betting:5,expenses:4}
+};
+
+// ── STATE ─────────────────────────────────────────────────
+var cur="overview",eId=null,eTable=null;
+var cSearch="",cFilter="all",cSort="name";
+
+// ── HELPERS ───────────────────────────────────────────────
+function el(id){return document.getElementById(id)}
+function money(n){
+  if(n===""||n===null||n===undefined)return"—";
+  return"$"+Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function fmtN(n){return Number(n).toLocaleString("en-US")}
+function pct(paid,total){if(!total)return 0;return Math.min(100,Math.round(paid/total*100))}
+function ini(name){var p=name.trim().split(" ");return((p[0]||"")[0]||"").toUpperCase()+((p[1]||"")[0]||"").toUpperCase()}
+function sum(arr,k){return arr.reduce(function(s,r){return s+(Number(r[k])||0)},0)}
+function toast(msg,type){
+  var t=el("toast");t.textContent=msg;t.className="toast "+(type||"ok")+" show";
+  setTimeout(function(){t.className="toast"},2500);
+}
+function progHTML(paid,total){
+  var p=pct(paid,total);
+  var c=p>=100?"#059669":p>=50?"#D97706":"#DC2626";
+  return'<div class="prog-bar"><div class="prog-fill" style="width:'+p+'%;background:'+c+'"></div></div>';
+}
+function statusBadge(paid,total){
+  var p=pct(paid,total);
+  if(p>=100)return'<span class="text-xs bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-0.5 rounded-full font-semibold">&#10003; Bixiyay</span>';
+  if(p>0)   return'<span class="text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-2 py-0.5 rounded-full font-semibold">&#9681; '+p+'%</span>';
+  return      '<span class="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-full font-semibold">&#9711; Ma bixin</span>';
+}
+
+// ── NAVIGATION ────────────────────────────────────────────
+var TITLES={
+  overview:  ["Overview","Dhammaan ganacsiyada hal meel"],
+  production:["Warshada — Waxsoosaarka","Diiwaanka wax soosaarka dhagaxa"],
+  customers: ["Warshada — Macaamiisha","Xisaabaadka macaamiisha & lacag-bixinta"],
+  betting:   ["Online Betting — Transactions","Diiwaanka residuals-ka cashier-yada"],
+  expenses:  ["Qarashka Guud","Shaqaalaha & kharashka bishiiba"]
+};
+
+function goTo(screen){
+  cur=screen;
+  document.querySelectorAll(".nv-btn").forEach(function(b){b.classList.remove("on")});
+  var nb=el("nv-"+screen);if(nb)nb.classList.add("on");
+  render();
+}
+
+// ── RENDER ────────────────────────────────────────────────
+function render(){
+  var c=el("content");
+  if(cur==="overview")   c.innerHTML=renderOverview();
+  else if(cur==="production") c.innerHTML=renderProduction();
+  else if(cur==="customers")  c.innerHTML=renderCustomers();
+  else if(cur==="betting")    c.innerHTML=renderBetting();
+  else if(cur==="expenses")   c.innerHTML=renderExpenses();
+}
+
+// ── OVERVIEW ──────────────────────────────────────────────
+function renderOverview(){
+  var tTotal=sum(DB.customers,"total"),tPaid=sum(DB.customers,"paid"),tResto=sum(DB.customers,"resto");
+  var tLoss=sum(DB.betting,"diff"),tExp=sum(DB.expenses,"total"),tMetres=sum(DB.production,"metre");
+  var pending=DB.customers.filter(function(c){return c.resto>0}).length;
+
+  var custRows=DB.customers.map(function(c){
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="py-2.5 pr-3 font-medium">'+c.name+'</td>'
+      +'<td class="pr-3">'+c.metre+'m</td>'
+      +'<td class="pr-3">'+money(c.total)+'</td>'
+      +'<td class="pr-3 text-green-400 font-semibold">'+money(c.paid)+'</td>'
+      +'<td class="pr-3 '+(c.resto>0?"text-red-400":"text-green-400")+' font-bold">'+money(c.resto)+'</td>'
+      +'<td>'+statusBadge(c.paid,c.total)+'</td>'
+      +'</tr>';
+  }).join("");
+
+  var betRows=DB.betting.map(function(b){
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="py-2.5 pr-3">'+b.date+'</td>'
+      +'<td class="pr-3"><span class="text-xs bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full">'+b.cashier+'</span></td>'
+      +'<td class="pr-3">'+money(b.prev)+'</td>'
+      +'<td class="pr-3">'+money(b.newb)+'</td>'
+      +'<td class="text-red-400 font-bold">'+money(b.diff)+'</td>'
+      +'</tr>';
+  }).join("");
+
+  return'<div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-5">'
+    +statCard("fa-cubes","Stone Produced",fmtN(tMetres)+"m",DB.production.length+" runs","text-yellow-400","border-yellow-500/40")
+    +statCard("fa-dollar-sign","Total Sales",money(tTotal),money(tPaid)+" collected","text-green-400","border-green-500/40")
+    +statCard("fa-clock","Outstanding",money(tResto),pending+" customers pending","text-orange-400","border-orange-500/40")
+    +statCard("fa-gamepad","Betting P&L",money(tLoss),"4 transactions","text-red-400","border-red-500/40")
+    +statCard("fa-wallet","Monthly Expenses",money(tExp),DB.expenses.length+" staff","text-red-400","border-red-500/40")
+    +'</div>'
+
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden mb-4">'
+    +'<div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">'
+    +'<h3 class="font-semibold flex items-center gap-2"><i class="fas fa-users text-green-400"></i>Construction — Macaamiisha</h3>'
+    +'<button onclick="goTo(\'customers\')" class="text-xs text-gray-400 hover:text-white transition">Dhamaan &#8594;</button></div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700">'
+    +'<tr><th class="px-4 py-2">Macamiilka</th><th class="px-4 py-2">Mitirka</th><th class="px-4 py-2">Wadarta</th><th class="px-4 py-2">Bixiyay</th><th class="px-4 py-2">Resto</th><th class="px-4 py-2">Xaaladda</th></tr>'
+    +'</thead><tbody class="divide-y divide-gray-700/30 text-sm px-4">'+custRows+'</tbody></table></div>'
+    +'<div class="flex gap-4 flex-wrap bg-gray-700/30 px-4 py-2 text-xs text-gray-400">'
+    +'<span>Wadarta: <strong class="text-white">'+money(tTotal)+'</strong></span>'
+    +'<span>Bixiyay: <strong class="text-green-400">'+money(tPaid)+'</strong></span>'
+    +'<span>Hadhay: <strong class="text-red-400">'+money(tResto)+'</strong></span>'
+    +'</div></div>'
+
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">'
+    +'<div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">'
+    +'<h3 class="font-semibold flex items-center gap-2"><i class="fas fa-gamepad text-purple-400"></i>Online Betting</h3>'
+    +'<button onclick="goTo(\'betting\')" class="text-xs text-gray-400 hover:text-white transition">Dhamaan &#8594;</button></div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700">'
+    +'<tr><th class="px-4 py-2">Taariikhda</th><th class="px-4 py-2">Cashier</th><th class="px-4 py-2">Hore</th><th class="px-4 py-2">Cusub</th><th class="px-4 py-2">Farqiga</th></tr>'
+    +'</thead><tbody class="divide-y divide-gray-700/30 text-sm">'+betRows+'</tbody></table></div>'
+    +'<div class="flex gap-4 bg-gray-700/30 px-4 py-2 text-xs text-gray-400">'
+    +'<span>Khasaaraha guud: <strong class="text-red-400">'+money(tLoss)+'</strong></span>'
+    +'</div></div>';
+}
+
+function statCard(icon,label,val,sub,color,border){
+  return'<div class="bg-gray-800 rounded-xl border '+border+' p-4">'
+    +'<div class="flex items-center gap-2 mb-1"><i class="fas '+icon+' '+color+' text-xs"></i>'
+    +'<p class="text-xs font-medium text-gray-400 uppercase tracking-wider">'+label+'</p></div>'
+    +'<p class="text-xl font-bold '+color+'">'+val+'</p>'
+    +'<p class="text-xs text-gray-500 mt-1">'+sub+'</p>'
+    +'</div>';
+}
+
+// ── PRODUCTION ────────────────────────────────────────────
+function renderProduction(){
+  var tM=sum(DB.production,"metre"),tT=sum(DB.production,"trucks");
+  var rows=DB.production.map(function(r){
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="px-4 py-3">'+r.date+'</td>'
+      +'<td class="px-4 py-3"><span class="text-xs bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 px-2 py-0.5 rounded-full">'+r.stone+'</span></td>'
+      +'<td class="px-4 py-3 font-semibold">'+fmtN(r.metre)+'m</td>'
+      +'<td class="px-4 py-3">'+r.trucks+'</td>'
+      +'<td class="px-4 py-3 text-red-400">'+(r.labor!==""?money(r.labor):'<span class="text-gray-600">—</span>')+'</td>'
+      +'<td class="px-4 py-3 text-red-400">'+(r.porter!==""?money(r.porter):'<span class="text-gray-600">—</span>')+'</td>'
+      +'<td class="px-4 py-3 text-red-400">'+(r.truck!==""?money(r.truck):'<span class="text-gray-600">—</span>')+'</td>'
+      +'<td class="px-4 py-3"><div class="flex gap-1">'
+      +'<button onclick="editRec(\'production\','+r.id+')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded transition">Edit</button>'
+      +'<button onclick="delRec(\'production\','+r.id+')" class="text-xs bg-red-500/20 hover:bg-red-500/40 text-red-400 px-2 py-1 rounded transition">Del</button>'
+      +'</div></td></tr>';
+  }).join("");
+  return'<div class="grid grid-cols-3 gap-3 mb-5">'
+    +statCard("fa-cubes","Wadarta Mitirka",fmtN(tM)+"m","","text-yellow-400","border-yellow-500/40")
+    +statCard("fa-truck","Wadarta Gaadidka",String(tT),"","text-blue-400","border-blue-500/40")
+    +statCard("fa-layer-group","Tirada Soosaarka",String(DB.production.length),"production runs","text-yellow-400","border-yellow-500/40")
+    +'</div>'
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">'
+    +'<div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">'
+    +'<h3 class="font-semibold flex items-center gap-2"><i class="fas fa-industry text-yellow-400"></i>Warshada_Waxsoosaarka</h3>'
+    +'<button onclick="openAdd()" class="bg-yellow-600 hover:bg-yellow-500 text-gray-900 font-semibold text-xs px-3 py-1.5 rounded-lg transition">+ Ku Dar</button>'
+    +'</div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700 bg-gray-700/30">'
+    +'<tr><th class="px-4 py-2">Taariikhda</th><th class="px-4 py-2">Dhagaxa</th><th class="px-4 py-2">Mitirka</th><th class="px-4 py-2">Gaadidka</th><th class="px-4 py-2">Labor Cost</th><th class="px-4 py-2">Porter Cost</th><th class="px-4 py-2">Truck Cost</th><th class="px-4 py-2">Ficilada</th></tr>'
+    +'</thead><tbody class="text-sm divide-y divide-gray-700/30">'+rows+'</tbody></table></div></div>';
+}
+
+// ── CUSTOMERS ─────────────────────────────────────────────
+function renderCustomers(){
+  var list=DB.customers.filter(function(c){
+    var q=cSearch.toLowerCase();
+    if(q&&c.name.toLowerCase().indexOf(q)===-1&&c.phone.indexOf(q)===-1)return false;
+    if(cFilter==="dayn"   &&c.resto<=0)return false;
+    if(cFilter==="bixiyay"&&c.resto>0) return false;
+    if(cFilter==="full"   &&pct(c.paid,c.total)<100)return false;
+    if(cFilter==="zero"   &&c.paid>0)return false;
+    return true;
+  });
+  list=list.slice().sort(function(a,b){
+    if(cSort==="name")  return a.name.localeCompare(b.name);
+    if(cSort==="resto") return b.resto-a.resto;
+    if(cSort==="paid")  return b.paid-a.paid;
+    return 0;
+  });
+  var tTotal=sum(list,"total"),tPaid=sum(list,"paid"),tResto=sum(list,"resto");
+
+  var chips=[
+    ["all","Dhami",DB.customers.length],
+    ["dayn","Weli deyn",DB.customers.filter(function(c){return c.resto>0}).length],
+    ["bixiyay","Wax bixiyay",DB.customers.filter(function(c){return c.paid>0}).length],
+    ["full","Dhamaan bixiyay",DB.customers.filter(function(c){return pct(c.paid,c.total)>=100}).length],
+    ["zero","Ma bixin",DB.customers.filter(function(c){return c.paid===0}).length],
+  ].map(function(ch){
+    var on=cFilter===ch[0];
+    return'<button onclick="setCF(\''+ch[0]+'\')" class="chip'+(on?" on":"")+'">'
+      +ch[1]+' <span class="opacity-60">('+ch[2]+')</span></button>';
+  }).join("");
+
+  var rows=list.map(function(c){
+    var p=pct(c.paid,c.total);
+    var nm=c.name;
+    if(cSearch){var q=cSearch;var qi=nm.toLowerCase().indexOf(q.toLowerCase());if(qi>=0)nm=nm.slice(0,qi)+'<mark>'+nm.slice(qi,qi+q.length)+'</mark>'+nm.slice(qi+q.length);}
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="px-4 py-3"><div class="flex items-center gap-2">'
+      +'<div class="w-7 h-7 rounded-full bg-yellow-500/20 text-yellow-300 flex items-center justify-center text-xs font-bold flex-shrink-0">'+ini(c.name)+'</div>'
+      +'<div><div class="font-medium">'+nm+'</div><div class="text-xs text-gray-500">'+c.phone+'</div></div>'
+      +'</div></td>'
+      +'<td class="px-4 py-3">'+c.metre+'m</td>'
+      +'<td class="px-4 py-3">$'+c.ppm+'</td>'
+      +'<td class="px-4 py-3 font-semibold">'+money(c.total)+'</td>'
+      +'<td class="px-4 py-3 text-green-400 font-semibold">'+money(c.paid)+'</td>'
+      +'<td class="px-4 py-3 '+(c.resto>0?"text-red-400":"text-green-400")+' font-bold">'+money(c.resto)+'</td>'
+      +'<td class="px-4 py-3" style="min-width:90px">'+progHTML(c.paid,c.total)+'<div class="text-xs text-gray-500 mt-0.5">'+p+'%</div></td>'
+      +'<td class="px-4 py-3">'+statusBadge(c.paid,c.total)+'</td>'
+      +'<td class="px-4 py-3"><div class="flex gap-1 flex-wrap">'
+      +'<a href="tel:'+c.phone+'" title="Wac" class="text-xs bg-blue-500/20 hover:bg-blue-500/40 text-blue-400 px-2 py-1 rounded transition"><i class="fas fa-phone-alt"></i></a>'
+      +'<a href="https://wa.me/252'+c.phone+'" target="_blank" title="WhatsApp" class="text-xs bg-green-500/20 hover:bg-green-500/40 text-green-400 px-2 py-1 rounded transition"><i class="fab fa-whatsapp"></i></a>'
+      +'<button onclick="addPayment('+c.id+')" class="text-xs bg-yellow-500/20 hover:bg-yellow-500/40 text-yellow-300 px-2 py-1 rounded transition">Pay</button>'
+      +'<button onclick="editRec(\'customers\','+c.id+')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded transition">Edit</button>'
+      +'<button onclick="delRec(\'customers\','+c.id+')" class="text-xs bg-red-500/20 hover:bg-red-500/40 text-red-400 px-2 py-1 rounded transition">Del</button>'
+      +'</div></td></tr>';
+  }).join("");
+
+  var empty=list.length===0?'<tr><td colspan="9" class="text-center py-10 text-gray-500">Macmiil la ma helin</td></tr>':"";
+
+  return'<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">'
+    +statCard("fa-users","Natiijada",list.length+"/"+DB.customers.length,"macaamiil la helay","text-blue-400","border-blue-500/40")
+    +statCard("fa-check-circle","Wadarta",money(tTotal),"","text-gray-300","border-gray-600")
+    +statCard("fa-hand-holding-usd","La Bixiyay",money(tPaid),"","text-green-400","border-green-500/40")
+    +statCard("fa-exclamation-circle","Hadhay",money(tResto),"","text-red-400","border-red-500/40")
+    +'</div>'
+
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">'
+    // toolbar
+    +'<div class="p-4 border-b border-gray-700 space-y-3">'
+    +'<div class="flex gap-2 flex-wrap">'
+    +'<div class="relative flex-1 min-w-48">'
+    +'<i class="fas fa-search absolute left-3 top-2.5 text-gray-500 text-xs"></i>'
+    +'<input id="csearch" value="'+cSearch+'" oninput="setCSearch(this.value)" placeholder="Raadi magac ama taleefon..." style="padding-left:28px">'
+    +'</div>'
+    +(cSearch?'<button onclick="setCSearch(\'\')" class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded transition text-gray-300">&times; Clear</button>':"")
+    +'<select onchange="setCS(this.value)" style="width:auto;padding:6px 10px">'
+    +'<option value="name"'+(cSort==="name"?" selected":"")+'>Magac A-Z</option>'
+    +'<option value="resto"'+(cSort==="resto"?" selected":"")+'>Hadhay (ugu badan)</option>'
+    +'<option value="paid"'+(cSort==="paid"?" selected":"")+'>Bixiyay (ugu badan)</option>'
+    +'</select>'
+    +'<button onclick="openAdd()" class="bg-green-600 hover:bg-green-500 text-white font-semibold text-xs px-3 py-1.5 rounded-lg transition flex-shrink-0">+ Macamiil Cusub</button>'
+    +'</div>'
+    +'<div class="flex gap-2 flex-wrap">'+chips+'</div>'
+    +'</div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700 bg-gray-700/30">'
+    +'<tr><th class="px-4 py-2">Macamiilka</th><th class="px-4 py-2">Mitir</th><th class="px-4 py-2">$/m</th><th class="px-4 py-2">Wadarta</th><th class="px-4 py-2">Bixiyay</th><th class="px-4 py-2">Resto</th><th class="px-4 py-2">Horumar</th><th class="px-4 py-2">Xaaladda</th><th class="px-4 py-2">Ficilada</th></tr>'
+    +'</thead><tbody class="text-sm divide-y divide-gray-700/30">'+(rows||empty)+'</tbody></table></div>'
+    +'<div class="flex gap-4 flex-wrap bg-gray-700/30 px-4 py-2 text-xs text-gray-400">'
+    +'<span>Natiijada: <strong class="text-white">'+list.length+'</strong></span>'
+    +'<span>Wadarta: <strong class="text-white">'+money(tTotal)+'</strong></span>'
+    +'<span>Bixiyay: <strong class="text-green-400">'+money(tPaid)+'</strong></span>'
+    +'<span>Hadhay: <strong class="text-red-400">'+money(tResto)+'</strong></span>'
+    +'</div></div>';
+}
+
+// ── BETTING ───────────────────────────────────────────────
+function renderBetting(){
+  var tLoss=sum(DB.betting,"diff"),tPrev=sum(DB.betting,"prev"),tNew=sum(DB.betting,"newb");
+  var rows=DB.betting.map(function(b){
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="px-4 py-3">'+b.date+'</td>'
+      +'<td class="px-4 py-3"><span class="text-xs bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full">'+b.cashier+'</span></td>'
+      +'<td class="px-4 py-3">'+money(b.prev)+'</td>'
+      +'<td class="px-4 py-3">'+money(b.newb)+'</td>'
+      +'<td class="px-4 py-3 text-red-400 font-bold">'+money(b.diff)+'</td>'
+      +'<td class="px-4 py-3 text-gray-400 text-xs max-w-xs" title="'+(b.notes||"")+'">'
+      +(b.notes?'<span class="truncate block max-w-xs">'+b.notes+'</span>':'<span class="text-gray-600">—</span>')+'</td>'
+      +'<td class="px-4 py-3"><div class="flex gap-1">'
+      +'<button onclick="editRec(\'betting\','+b.id+')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded transition">Edit</button>'
+      +'<button onclick="delRec(\'betting\','+b.id+')" class="text-xs bg-red-500/20 hover:bg-red-500/40 text-red-400 px-2 py-1 rounded transition">Del</button>'
+      +'</div></td></tr>';
+  }).join("");
+  return'<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">'
+    +statCard("fa-history","Prev Total",money(tPrev),"","text-purple-400","border-purple-500/40")
+    +statCard("fa-wallet","New Balance",money(tNew),"","text-purple-300","border-purple-500/40")
+    +statCard("fa-chart-line","Net Farqi",money(tLoss),"","text-red-400","border-red-500/40")
+    +statCard("fa-list","Transactions",String(DB.betting.length),"","text-blue-400","border-blue-500/40")
+    +'</div>'
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">'
+    +'<div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">'
+    +'<h3 class="font-semibold flex items-center gap-2"><i class="fas fa-gamepad text-purple-400"></i>Online_Betting</h3>'
+    +'<button onclick="openAdd()" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs px-3 py-1.5 rounded-lg transition">+ Diiwaangeli</button>'
+    +'</div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700 bg-gray-700/30">'
+    +'<tr><th class="px-4 py-2">Taariikhda</th><th class="px-4 py-2">Cashier</th><th class="px-4 py-2">Hore</th><th class="px-4 py-2">Cusub</th><th class="px-4 py-2">Farqiga</th><th class="px-4 py-2">Xusuusnaha</th><th class="px-4 py-2">Ficilada</th></tr>'
+    +'</thead><tbody class="text-sm divide-y divide-gray-700/30">'+rows+'</tbody></table></div>'
+    +'<div class="flex gap-4 bg-gray-700/30 px-4 py-2 text-xs text-gray-400">'
+    +'<span>Khasaaraha guud: <strong class="text-red-400">'+money(tLoss)+'</strong></span>'
+    +'<span>Celceliska: <strong class="text-red-400">'+money(tLoss/DB.betting.length)+'</strong></span>'
+    +'</div></div>';
+}
+
+// ── EXPENSES ──────────────────────────────────────────────
+function renderExpenses(){
+  var tS=sum(DB.expenses,"salary"),tF=sum(DB.expenses,"family"),tR=sum(DB.expenses,"rent"),tAll=sum(DB.expenses,"total");
+  var rows=DB.expenses.map(function(e){
+    var share=tAll>0?Math.round(e.total/tAll*100):0;
+    return'<tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">'
+      +'<td class="px-4 py-3"><div class="flex items-center gap-2">'
+      +'<div class="w-7 h-7 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold">'+ini(e.staff)+'</div>'
+      +'<strong>'+e.staff+'</strong></div></td>'
+      +'<td class="px-4 py-3">'+money(e.salary)+'</td>'
+      +'<td class="px-4 py-3">'+money(e.family)+'</td>'
+      +'<td class="px-4 py-3">'+money(e.rent)+'</td>'
+      +'<td class="px-4 py-3 text-red-400 font-bold">'+money(e.total)+'</td>'
+      +'<td class="px-4 py-3"><span class="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-full">'+share+'%</span></td>'
+      +'<td class="px-4 py-3"><div class="flex gap-1">'
+      +'<button onclick="editRec(\'expenses\','+e.id+')" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded transition">Edit</button>'
+      +'<button onclick="delRec(\'expenses\','+e.id+')" class="text-xs bg-red-500/20 hover:bg-red-500/40 text-red-400 px-2 py-1 rounded transition">Del</button>'
+      +'</div></td></tr>';
+  }).join("");
+  return'<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">'
+    +statCard("fa-money-bill","Wadarta Bishiiba",money(tAll),"","text-red-400","border-red-500/40")
+    +statCard("fa-user-tie","Mushaharka",money(tS),"","text-orange-400","border-orange-500/40")
+    +statCard("fa-home","Qoyska",money(tF),"","text-yellow-400","border-yellow-500/40")
+    +statCard("fa-building","Kiro+Gaadiidka",money(tR),"","text-amber-400","border-amber-500/40")
+    +'</div>'
+    +'<div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">'
+    +'<div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">'
+    +'<h3 class="font-semibold flex items-center gap-2"><i class="fas fa-wallet text-red-400"></i>Qarashka_Guud</h3>'
+    +'<button onclick="openAdd()" class="bg-red-600 hover:bg-red-500 text-white font-semibold text-xs px-3 py-1.5 rounded-lg transition">+ Shaqaale Cusub</button>'
+    +'</div>'
+    +'<div class="overflow-x-auto"><table class="w-full text-left">'
+    +'<thead class="text-gray-400 text-xs uppercase border-b border-gray-700 bg-gray-700/30">'
+    +'<tr><th class="px-4 py-2">Magaca Shaqaalaha</th><th class="px-4 py-2">Mushaharka</th><th class="px-4 py-2">Qoyska</th><th class="px-4 py-2">Kiro+Gaadiidka</th><th class="px-4 py-2">Wadarta Kharashka</th><th class="px-4 py-2">Qaybta</th><th class="px-4 py-2">Ficilada</th></tr>'
+    +'</thead><tbody class="text-sm divide-y divide-gray-700/30">'+rows+'</tbody></table></div>'
+    +'<div class="flex gap-4 flex-wrap bg-gray-700/30 px-4 py-2 text-xs text-gray-400">'
+    +'<span>Shaqaalaha: <strong class="text-white">'+DB.expenses.length+'</strong></span>'
+    +'<span>Mushahar: <strong>'+money(tS)+'</strong></span>'
+    +'<span>Qoyska: <strong>'+money(tF)+'</strong></span>'
+    +'<span>Kiro+Gaadiidka: <strong>'+money(tR)+'</strong></span>'
+    +'<span>Wadarta: <strong class="text-red-400">'+money(tAll)+'</strong></span>'
+    +'</div></div>';
+}
+
+// ── MODAL ─────────────────────────────────────────────────
+function openAdd(){eId=null;eTable=cur;buildForm(eTable,null);el("m-title").textContent="Ku Dar — "+eTable;el("modal-bg").classList.add("open")}
+function editRec(table,id){eTable=table;eId=id;var r=DB[table].find(function(x){return x.id===id});buildForm(table,r);el("m-title").textContent="Wax ka beddel";el("modal-bg").classList.add("open")}
+
+function formGroup(label,input){return'<div class="mb-3"><label class="block text-xs text-gray-400 mb-1">'+label+'</label>'+input+'</div>'}
+function fi(id,type,val,ph){return'<input id="'+id+'" type="'+(type||"text")+'" value="'+(val!=null?val:"")+'" placeholder="'+(ph||"")+'"'+(type==="number"?' step="any"':"")+'>'}
+
+function buildForm(table,r){
+  r=r||{};var h="";
+  if(table==="production"){
+    h='<div class="grid grid-cols-2 gap-3">'
+      +formGroup("Taariikhda",fi("f0","text",r.date,"DD/MM/YYYY"))
+      +formGroup("Nooca Dhagaxa",fi("f1","text",r.stone,"No.8"))
+      +formGroup("Mitirka",fi("f2","number",r.metre!==undefined?r.metre:"","0"))
+      +formGroup("Gaadidka",fi("f3","number",r.trucks!==undefined?r.trucks:"","0"))
+      +formGroup("Labor Cost ($)",fi("f4","number",r.labor,"ikhtiyaari"))
+      +formGroup("Porter Cost ($)",fi("f5","number",r.porter,"ikhtiyaari"))
+      +'<div class="col-span-2">'+formGroup("Truck Cost ($)",fi("f6","number",r.truck,"ikhtiyaari"))+'</div>'
+      +'</div>';
+  } else if(table==="customers"){
+    h='<div class="space-y-2">'
+      +'<div class="grid grid-cols-1">'+formGroup("Magaca Macamiilka",fi("f0","text",r.name,"Magaca buuxa"))+'</div>'
+      +'<div class="grid grid-cols-2 gap-3">'
+      +formGroup("Telefoonka",fi("f1","text",r.phone,"61xxxxxxx"))
+      +formGroup("Mitirka",fi("f2","number",r.metre!==undefined?r.metre:"","0"))
+      +formGroup("Qiimaha Mitirka ($)",fi("f3","number",r.ppm!==undefined?r.ppm:16,"16"))
+      +formGroup("Lacagta La Bixiyay ($)",fi("f4","number",r.paid!==undefined?r.paid:0,"0"))
+      +'</div></div>';
+  } else if(table==="betting"){
+    h='<div class="grid grid-cols-2 gap-3">'
+      +formGroup("Taariikhda",fi("f0","text",r.date,"DD/MM/YYYY"))
+      +formGroup("Magaca Cashier-ka",fi("f1","text",r.cashier,"Cashier ID"))
+      +formGroup("Residual Hore ($)",fi("f2","number",r.prev!==undefined?r.prev:"","0"))
+      +formGroup("Residual Cusub ($)",fi("f3","number",r.newb!==undefined?r.newb:"","0"))
+      +'<div class="col-span-2">'+formGroup("Xusuusnaha",fi("f4","text",r.notes,"ikhtiyaari"))+'</div>'
+      +'</div>';
+  } else if(table==="expenses"){
+    h='<div class="space-y-2">'
+      +'<div>'+formGroup("Magaca Shaqaalaha",fi("f0","text",r.staff,"Magaca buuxa"))+'</div>'
+      +'<div class="grid grid-cols-3 gap-3">'
+      +formGroup("Mushaharka ($)",fi("f1","number",r.salary!==undefined?r.salary:"","0"))
+      +formGroup("Qoyska ($)",fi("f2","number",r.family!==undefined?r.family:"","0"))
+      +formGroup("Kiro+Gaadiidka ($)",fi("f3","number",r.rent!==undefined?r.rent:"","0"))
+      +'</div></div>';
+  }
+  el("m-body").innerHTML=h;
+}
+
+function saveMod(){
+  if(eTable==="__pay"){savePay();return;}
+  var rec={};
+  if(eTable==="production"){
+    rec={date:el("f0").value,stone:el("f1").value,
+      metre:parseFloat(el("f2").value)||0,
+      trucks:el("f3").value!==""?parseInt(el("f3").value):0,
+      labor:el("f4").value!==""?parseFloat(el("f4").value):"",
+      porter:el("f5").value!==""?parseFloat(el("f5").value):"",
+      truck:el("f6").value!==""?parseFloat(el("f6").value):""};
+  } else if(eTable==="customers"){
+    var m=parseFloat(el("f2").value)||0,p=parseFloat(el("f3").value)||16,t=parseFloat((m*p).toFixed(2)),paid=parseFloat(el("f4").value)||0;
+    rec={name:el("f0").value,phone:el("f1").value,metre:m,ppm:p,total:t,paid:paid,resto:parseFloat((t-paid).toFixed(2))};
+  } else if(eTable==="betting"){
+    var prev=parseFloat(el("f2").value)||0,newb=parseFloat(el("f3").value)||0;
+    rec={date:el("f0").value,cashier:el("f1").value,prev:prev,newb:newb,diff:parseFloat((newb-prev).toFixed(2)),notes:el("f4").value};
+  } else if(eTable==="expenses"){
+    var s=parseFloat(el("f1").value)||0,f=parseFloat(el("f2").value)||0,r2=parseFloat(el("f3").value)||0;
+    rec={staff:el("f0").value,salary:s,family:f,rent:r2,total:parseFloat((s+f+r2).toFixed(2))};
+  }
+  if(eId){
+    DB[eTable]=DB[eTable].map(function(x){return x.id===eId?Object.assign({id:x.id},rec):x});
+    toast("Wax la bedelay ✓","ok");
+  } else {
+    rec.id=DB.nid[eTable]++;DB[eTable].push(rec);
+    toast("La keydiyay ✓","ok");
+  }
+  closeMod();render();
+}
+
+function delRec(table,id){
+  if(!confirm("Tirtirayaa?"))return;
+  DB[table]=DB[table].filter(function(x){return x.id!==id});
+  toast("La tirtiray","err");render();
+}
+
+function addPayment(cid){
+  var c=DB.customers.find(function(x){return x.id===cid});if(!c)return;
+  eId=cid;eTable="__pay";
+  el("m-title").textContent="Geli Lacag-bixin — "+c.name;
+  el("m-body").innerHTML=
+    '<div class="bg-gray-700/50 rounded-lg p-3 mb-4">'
+    +'<div class="text-xs text-gray-400 mb-1">Lacagta hadhay</div>'
+    +'<div class="text-2xl font-bold text-red-400">'+money(c.resto)+'</div>'
+    +'<div class="text-xs text-gray-500 mt-1">'+pct(c.paid,c.total)+'% hore loo bixiyay</div></div>'
+    +formGroup("Lacagta La Bixiyay ($)",fi("f-pay","number","","0.00"));
+  el("modal-bg").classList.add("open");
+}
+
+function savePay(){
+  var amt=parseFloat(el("f-pay").value)||0;
+  if(amt<=0){toast("Lacag saxda ah geli","err");return;}
+  DB.customers=DB.customers.map(function(c){
+    if(c.id!==eId)return c;
+    var np=parseFloat(Math.min(c.paid+amt,c.total).toFixed(2));
+    return Object.assign({},c,{paid:np,resto:parseFloat((c.total-np).toFixed(2))});
+  });
+  toast("Lacag-bixin la diiwaangeliyay ✓","ok");
+  closeMod();render();
+}
+
+function closeMod(){el("modal-bg").classList.remove("open");eId=null;eTable=null;}
+function bgClick(e){if(e.target===el("modal-bg"))closeMod();}
+
+// ── FILTER HELPERS ────────────────────────────────────────
+function setCSearch(v){cSearch=v;if(cur==="customers")render();}
+function setCF(v){cFilter=v;render();}
+function setCS(v){cSort=v;render();}
+
+// ── EXPORT CSV ────────────────────────────────────────────
+function exportCSV(){
+  var tables={
+    "Warshada_Waxsoosaarka":["Date,StoneType,Metre,Trucks,LaborCost,PorterCost,TruckCost"].concat(
+      DB.production.map(function(r){return[r.date,r.stone,r.metre,r.trucks,r.labor,r.porter,r.truck].join(",")})),
+    "Warshada_Macaamiisha":["CustomerName,Phone,Metre,PricePerMetre,TotalAmount,Paid,Resto"].concat(
+      DB.customers.map(function(c){return[c.name,c.phone,c.metre,c.ppm,c.total,c.paid,c.resto].join(",")})),
+    "Online_Betting":["Date,CashierName,PreviousBalance,NewBalance,Difference,Notes"].concat(
+      DB.betting.map(function(b){return[b.date,b.cashier,b.prev,b.newb,b.diff,'"'+(b.notes||"")+'"'].join(",")})),
+    "Qarashka_Guud":["StaffName,MonthlySalary,FamilyExpense,RentAndTransport,TotalExpense"].concat(
+      DB.expenses.map(function(e){return[e.staff,e.salary,e.family,e.rent,e.total].join(",")}))
+  };
+  var csv="";
+  Object.keys(tables).forEach(function(k){csv+="## "+k+"\n"+tables[k].join("\n")+"\n\n";});
+  var blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");a.href=url;a.download="business-hub-export.csv";a.click();
+  toast("CSV la dejiyay ✓","ok");
+}
+
+// ── INIT ──────────────────────────────────────────────────
+el("sb-date").textContent=new Date().toLocaleDateString("en-GB",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
+goTo("overview");
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    var swPath = location.pathname.replace(/\/[^/]*$/, '/') + 'sw.js';
+    navigator.serviceWorker.register(swPath, {scope: location.pathname.replace(/\/[^/]*$/, '/')})
+      .then(function(r){ console.log('SW registered', r.scope); })
+      .catch(function(e){ console.log('SW error', e); });
+  });
+}
+</script>
+</body>
+</html>
